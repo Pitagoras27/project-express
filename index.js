@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const app = express();
+const bodyParse = require('body-parser');
 
 const productsRouter = require('./routes/products');
 const productsApiRouter = require('./routes/api/products.js')
@@ -14,7 +15,9 @@ app.set('view engine', 'pug');
 
 app.use('/products', productsRouter);
 //
-app.use("/api/products", productsApiRouter);
+app.use('/api/products', productsApiRouter);
+
+app.use(bodyParse.json());
 
 const server = app.listen(3000, () => {
   console.log(`Listen to port ${server.address().port} !!`)
