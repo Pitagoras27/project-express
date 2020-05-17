@@ -1,10 +1,10 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const ProductsService = require("../../services/products");
+const ProductsService = require('../../services/products');
 
 const productService = new ProductsService();
 
-router.get("/", async function(req, res, next) {
+router.get('/', async function(req, res, next) {
   const { tags } = req.query;
 
   try {
@@ -12,14 +12,15 @@ router.get("/", async function(req, res, next) {
 
     res.status(200).json({
       data: products,
-      message: "products listed"
+      message: 'products listed'
     });
   } catch (err) {
     next(err);
   }
 });
 
-router.get("/:productId", async function(req, res, next) {
+// url param antepuesto a los :
+router.get('/:productId', async function(req, res, next) {
   const { productId } = req.params;
 
   try {
@@ -27,14 +28,14 @@ router.get("/:productId", async function(req, res, next) {
 
     res.status(200).json({
       data: product,
-      message: "product retrieved"
+      message: 'product retrieved'
     });
   } catch (err) {
     next(err);
   }
 });
 
-router.post("/", async function(req, res, next) {
+router.post('/', async function(req, res, next) {
   const { body: product } = req;
 
   try {
@@ -42,28 +43,28 @@ router.post("/", async function(req, res, next) {
 
     res.status(201).json({
       data: product,
-      message: "products listed"
+      message: 'products listed'
     });
   } catch (err) {
     next(err);
   }
 });
 
-router.put("/:productId", async function(req, res, next) {
+router.put('/:productId', async function(req, res, next) {
   const { productId } = req.params;
   const { body: product } = req;
   try {
     const updatedProduct = productService.updateProduct({ productId, product });
     res.status(200).json({
       data: updatedProduct,
-      message: "products updated"
+      message: 'products updated'
     });
   } catch (err) {
     next(err);
   }
 });
 
-router.delete("/:productId", async function(req, res, next) {
+router.delete('/:productId', async function(req, res, next) {
   const { productId } = req.params;
 
   try {
@@ -71,7 +72,7 @@ router.delete("/:productId", async function(req, res, next) {
 
     res.status(200).json({
       data: product,
-      message: "products deleted"
+      message: 'products deleted'
     });
   } catch (err) {
     next(err);
