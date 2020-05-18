@@ -6,13 +6,11 @@ const productService = new ProductsService();
 
 router.get('/', async function(req, res, next) {
   const { tags } = req.query;
-
   try {
     const products = await productService.getProducts({ tags });
-
     res.status(200).json({
       data: products,
-      message: 'products listed'
+      message: 'products listed!'
     });
   } catch (err) {
     next(err);
@@ -39,11 +37,11 @@ router.post('/', async function(req, res, next) {
   const { body: product } = req;
 
   try {
-    const product = await productService.createProduct({ product });
+    const createdProduct = await productService.createProduct({ product });
 
     res.status(201).json({
-      data: product,
-      message: 'products listed'
+      data: createdProduct,
+      message: 'product created'
     });
   } catch (err) {
     next(err);
