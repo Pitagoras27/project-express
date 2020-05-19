@@ -1,16 +1,19 @@
 const express = require('express');
 const path = require('path');
-const app = express();
+const boom = require('@hapi/boom');
 const bodyParse = require('body-parser');
+
+const app = express();
 
 const productsRouter = require('./routes/views/products');
 const productsApiRouter = require('./routes/api/products');
 const {
   logErrors,
   clientErrorHandler,
+  wrapErrors,
   errorHandler
 } = require('./utils/middleware/errorHandlers');
-
+const isRequestAjaxOrApi = require('./utils/isRequestAjaxOrApi');
 // middlewares globales
 app.use(bodyParse.json());
 
@@ -30,8 +33,21 @@ app.get('/', function(req, res){
   res.redirect('/products')
 })
 
+app.use(function(req, res, next) {
+  if (isRequestAjaxOrApi(req)) {
+    const {
+      output: { statusCode, payload }
+    } = boom.notFound();
+
+    res.status(statusCode).json(payload);
+  }
+
+  res.status(404).render('404');
+});
+
 app.use(logErrors);
 app.use(clientErrorHandler);
+app.use(wrapErrors);
 app.use(errorHandler);
 
 // Inicializar el servidor
