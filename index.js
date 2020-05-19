@@ -5,6 +5,11 @@ const bodyParse = require('body-parser');
 
 const productsRouter = require('./routes/views/products');
 const productsApiRouter = require('./routes/api/products');
+const {
+  logErrors,
+  clientErrorHandler,
+  errorHandler
+} = require('./utils/middleware/errorHandlers');
 
 // middlewares globales
 app.use(bodyParse.json());
@@ -24,6 +29,10 @@ app.use('/api/products', productsApiRouter);
 app.get('/', function(req, res){
   res.redirect('/products')
 })
+
+app.use(logErrors);
+app.use(clientErrorHandler);
+app.use(errorHandler);
 
 // Inicializar el servidor
 const server = app.listen(3000, () => {
