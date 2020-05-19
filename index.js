@@ -7,6 +7,8 @@ const app = express();
 
 const productsRouter = require('./routes/views/products');
 const productsApiRouter = require('./routes/api/products');
+const authApiRouter = require('./routes/api/auth');
+
 const {
   logErrors,
   clientErrorHandler,
@@ -27,6 +29,7 @@ app.set('view engine', 'pug');
 // // Registrar las rutas de la aplicación
 app.use('/products', productsRouter);
 app.use('/api/products', productsApiRouter);
+app.use('/api/auth', authApiRouter);
 
 // Redireccionar al Home del sitio
 app.get('/', function(req, res){
