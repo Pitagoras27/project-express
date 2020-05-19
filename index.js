@@ -15,7 +15,9 @@ const {
   wrapErrors,
   errorHandler
 } = require('./utils/middleware/errorHandlers');
+
 const isRequestAjaxOrApi = require('./utils/isRequestAjaxOrApi');
+
 // middlewares globales
 app.use(bodyParse.json());
 
@@ -28,7 +30,7 @@ app.set('view engine', 'pug');
 
 // // Registrar las rutas de la aplicación
 app.use('/products', productsRouter);
-app.use('/api/products', productsApiRouter);
+productsApiRouter(app);
 app.use('/api/auth', authApiRouter);
 
 // Redireccionar al Home del sitio
