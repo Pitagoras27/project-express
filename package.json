@@ -7,7 +7,10 @@
     "test": "mocha --exit",
     "test:cover": "nyc npm run test",
     "start": "node index.js",
-    "dev": "nodemon index.js --delay 1500ms"
+    "dev": "nodemon index.js --delay 1500ms",
+    "dev:inspect": "nodemon --inspect index",
+    "dev:debug": "DEBUG=express:*,app:* npm run dev",
+    "debug": "DEBUG=express:*,app:* npm run start"
   },
   "keywords": [],
   "author": "",

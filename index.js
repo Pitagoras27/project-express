@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const boom = require('@hapi/boom');
 const bodyParse = require('body-parser');
+const debug = require('debug')('app-server');
 
 const app = express();
 
@@ -57,5 +58,5 @@ app.use(errorHandler);
 
 // Inicializar el servidor
 const server = app.listen(3000, () => {
-  console.log(`Listen to port ${server.address().port} !!`)
+  debug(`Listen to port ${server.address().port} !!!`)
 });
