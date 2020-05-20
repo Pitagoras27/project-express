@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const helmet = require('helmet');
 const boom = require('@hapi/boom');
 const bodyParse = require('body-parser');
 const debug = require('debug')('app-server');
@@ -20,6 +21,7 @@ const {
 const isRequestAjaxOrApi = require('./utils/isRequestAjaxOrApi');
 
 // middlewares globales
+app.use(helmet());
 app.use(bodyParse.json());
 
 // Registrar middleware de archivos estaticos
