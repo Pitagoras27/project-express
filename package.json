@@ -6,7 +6,8 @@
   "scripts": {
     "test": "mocha --exit",
     "test:cover": "nyc npm run test",
-    "start": "node index.js",
+    "start": "NODE_ENV=production node index.js",
+    "build": "cd public/assets && cleancss -o main.min.css main.css",
     "dev": "nodemon index.js --delay 1500ms",
     "dev:inspect": "nodemon --inspect index",
     "dev:debug": "DEBUG=express:*,app:* npm run dev",
@@ -17,6 +18,7 @@
   "license": "ISC",
   "devDependencies": {
     "chalk": "^4.0.0",
+    "clean-css-cli": "^4.3.0",
     "express": "4.17.1",
     "mocha": "^7.1.2",
     "nodemon": "2.0.4",
