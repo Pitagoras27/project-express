@@ -20,7 +20,7 @@
     "chalk": "^4.0.0",
     "clean-css-cli": "^4.3.0",
     "express": "4.17.1",
-    "mocha": "^7.1.2",
+    "mocha": "^10.2.0",
     "nodemon": "2.0.4",
     "nyc": "^15.0.1",
     "proxyquire": "^2.1.3",
